@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { IconButton } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (

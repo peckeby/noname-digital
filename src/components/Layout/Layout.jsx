@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
-import { GlobalStyle } from 'components/GlobalStyle';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
 import { Box, Container, CssBaseline } from '@mui/material';
