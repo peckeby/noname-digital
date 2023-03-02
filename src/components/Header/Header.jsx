@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,13 +10,19 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import css from './Header.module.scss';
+import { useEffect, useState } from 'react';
+import { SIGN_OUT } from 'components/routes/routes';
+import GlobalState from 'context/GlobalState';
 
 export default function Header() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [userStatus, setUserStatus] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const preventDefault = event => event.preventDefault();
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
@@ -90,8 +95,6 @@ export default function Header() {
     </Menu>
   );
 
-  const preventDefault = event => event.preventDefault();
-
   return (
     <>
       <AppBar position="static" sx={{ backgroundColor: 'white' }}>
@@ -150,6 +153,9 @@ export default function Header() {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Link to={SIGN_OUT}>
+              <button type="button">Logout</button>
+            </Link>
             <IconButton
               size="large"
               edge="end"

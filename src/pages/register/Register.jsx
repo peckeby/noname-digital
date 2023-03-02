@@ -1,50 +1,52 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setEmail, setError, setPassWord } from 'redux/user/userSlice';
-import { auth } from '../../firebase/firebaseConfig';
 import Button from '@mui/material/Button';
+import { useContext, useState } from 'react';
+import ShopContext from 'context/ShopContext';
 
-export const Login = () => {
-  const { password, email, error } = useSelector(state => state.user);
-  const dispatch = useDispatch();
-
+export const Register = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassWord] = useState();
+  const [message, setMessage] = useState();
+  const context = useContext(ShopContext);
   const navigate = useNavigate();
 
-  const handleLogin = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log(email);
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        const user = userCredential.user;
+    context
+      .register(email, password)
+      .then(response => {
         navigate('/');
+        console.log('success:', response);
+        setMessage({
+          success: true,
+          text: 'User registered successfully',
+        });
       })
       .catch(error => {
-        dispatch(setError(true));
-        console.log(error);
+        console.log('error:', error.message);
+        setMessage({ success: false, text: error.message });
       });
   };
 
   const handleChange = e => {
-    dispatch(setEmail(e.target.value));
+    setEmail(e.target.value);
   };
 
   const handlePassWordChange = e => {
-    dispatch(setPassWord(e.target.value));
+    setPassWord(e.target.value);
   };
 
   return (
     <>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <input type="email" placeholder="email" onChange={handleChange} />
         <input
           type="password"
           placeholder="password"
           onChange={handlePassWordChange}
         />
-        <Button type="submit">Login</Button>
-        {error === true && <p>Wrong email or password!</p>}
+        <Button type="submit">Create Account</Button>
+        {message === true && <p>Oooops, something went wrong!</p>}
       </form>
     </>
   );

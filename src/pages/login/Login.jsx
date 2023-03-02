@@ -1,36 +1,37 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { setEmail, setError, setPassWord } from 'redux/user/userSlice';
-import { auth } from '../../firebase/firebaseConfig';
+import ShopContext from 'context/ShopContext';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import localStorage from 'redux-persist/es/storage';
 
-export const Login = () => {
-  const { password, email, error } = useSelector(state => state.user);
-  const dispatch = useDispatch();
+export const Login = props => {
+  const [email, setEmail] = useState();
+  const [password, setPassWord] = useState();
+  const [message, setMessage] = useState();
+  const context = useContext(ShopContext);
 
   const navigate = useNavigate();
 
   const handleLogin = e => {
     e.preventDefault();
-    console.log(email);
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then(userCredential => {
-        // const user = userCredential.user;
+    context
+      .logIn(email, password)
+      .then(response => {
+        context.updateUserStatus(response.user);
+        localStorage.setItem('user', JSON.stringify(response.user));
         navigate('/');
       })
       .catch(error => {
-        dispatch(setError(true));
-        console.log(error);
+        console.log('error:', error.message);
+        setMessage({ success: false, text: error.message });
       });
   };
 
   const handleChange = e => {
-    dispatch(setEmail(e.target.value));
+    setEmail(e.target.value);
   };
 
   const handlePassWordChange = e => {
-    dispatch(setPassWord(e.target.value));
+    setPassWord(e.target.value);
   };
 
   return (
@@ -42,8 +43,14 @@ export const Login = () => {
           placeholder="password"
           onChange={handlePassWordChange}
         />
-        <button type="submit">Login</button>
-        {error === true && <p>Wrong email or password!</p>}
+        <button type="submit">Log in</button>
+        {message === true && <p>Wrong email or password!</p>}
+        <p>
+          Create an account
+          <Link to={'/register'}>
+            <button type="button">Sign up</button>
+          </Link>
+        </p>
       </form>
     </>
   );
