@@ -19,6 +19,7 @@
     "react-redux-firebase": "^3.11.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "^4.0.1",
+    "redux-firestore": "^1.0.0",
     "redux-persist": "^6.0.0",
     "router-dom": "^2.2.10",
     "sass": "^1.58.3",
