@@ -1,5 +1,4 @@
-import { Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, Typography } from '@material-ui/core';
 import CategoriesList from 'components/CategoriesList/CategoriesList';
 
 export const Homepage = () => {

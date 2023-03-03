@@ -1,9 +1,5 @@
+import { Box, Container, IconButton, Typography } from '@material-ui/core';
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { IconButton } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function Footer() {
   return (
@@ -22,9 +18,10 @@ export default function Footer() {
       <Container maxWidth="sm">
         <Typography variant="body1">Author: @peckeby</Typography>
         <a href="https://github.com/peckeby">
-          <IconButton color="primary" aria-label="add to shopping cart">
-            <GitHubIcon />
-          </IconButton>
+          <IconButton
+            color="primary"
+            aria-label="add to shopping cart"
+          ></IconButton>
         </a>
       </Container>
     </Box>

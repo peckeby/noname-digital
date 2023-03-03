@@ -1,14 +1,16 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {
+  Button,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
 
 export default function ProductCards({ product }) {
   return (
-    <Card sx={{ width: 400 }}>
+    <Card>
       <CardMedia
         component="img"
         alt={product.name}

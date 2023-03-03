@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer/Footer';
-import { Box, Container, CssBaseline } from '@mui/material';
+import { Box, Container, CssBaseline } from '@material-ui/core';
 import img from '../../bkg.png';
 
 function Layout() {

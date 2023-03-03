@@ -1,17 +1,17 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import css from './Header.module.scss';
 import { useState } from 'react';
 import { SIGN_OUT } from 'components/routes/routes';
+import { AccountCircle } from '@material-ui/icons';
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -104,9 +104,7 @@ export default function Header() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
             onClick={handleProfileMenuOpen}
-          >
-            <MenuIcon />
-          </IconButton>
+          ></IconButton>
           <Link to={'/'} className={css.homeLink}>
             <Typography
               variant="h6"
@@ -173,9 +171,7 @@ export default function Header() {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="black"
-            >
-              <MoreIcon />
-            </IconButton>
+            ></IconButton>
           </Box>
         </Toolbar>
       </AppBar>
