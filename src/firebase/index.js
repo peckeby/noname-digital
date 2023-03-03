@@ -2,9 +2,9 @@
 import { firebaseConfig } from './firebaseConfig';
 // import { getAuth } from 'firebase/auth';
 // import { getFirestore } from 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/firestore';
-import firebase from 'firebase';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import firebase from 'firebase/compat/app';
 
 /* Initialize Firebase */
 const Firebase = firebase.initializeApp(firebaseConfig);
