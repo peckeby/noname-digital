@@ -1,8 +1,5 @@
 {
   "name": "noname-digital",
-  "engines" : { 
-    "node" : "16.0.0" 
-  },
   "version": "0.1.0",
   "private": true,
   "homepage": "https://noname-digital-2f2q.vercel.app/",
