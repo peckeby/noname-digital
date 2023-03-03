@@ -12,7 +12,7 @@ class Electronics extends Component {
             {context.products
               .filter(product => product.category === 'electronics')
               .map(product => {
-                return <ProductCards product={product} />;
+                return <ProductCards product={product} key={product.id} />;
               })}
           </ul>
         )}

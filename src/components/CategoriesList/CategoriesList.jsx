@@ -4,9 +4,9 @@ import css from './CategoriesList.module.scss';
 export default function CategoriesList() {
   return (
     <ul className={css.imageList}>
-      {itemData.map(item => (
-        <div className={css.imgBox}>
-          <Link className={css.linkImage} to={item.title.toLowerCase()}>
+      {itemData.map((item, index) => (
+        <li className={css.imgBox} key={index}>
+          <Link className={css.linkImage} to={item.link}>
             <img
               className={css.imgCategory}
               src={`${item.img}?w=800&h=300&fit=crop&auto=format`}
@@ -16,7 +16,7 @@ export default function CategoriesList() {
             />
             <span className={css.imageText}>{item.title}</span>
           </Link>
-        </div>
+        </li>
       ))}
     </ul>
   );
@@ -25,18 +25,22 @@ export default function CategoriesList() {
 const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1526738549149-8e07eca6c147',
-    title: 'Electronics',
+    title: 'electronics',
+    link: 'electronics',
   },
   {
     img: 'https://images.unsplash.com/photo-1608042314453-ae338d80c427',
-    title: 'Jewelry',
+    title: 'jewelery',
+    link: 'jewelery',
   },
   {
     img: 'https://images.unsplash.com/photo-1485875437342-9b39470b3d95',
     title: 'For Her',
+    link: 'woman',
   },
   {
     img: 'https://images.unsplash.com/photo-1456327102063-fb5054efe647',
     title: 'For Him',
+    link: 'men',
   },
 ];

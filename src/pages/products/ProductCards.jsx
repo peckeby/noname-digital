@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function ProductCards({ product }) {
   return (
-    <Card sx={{ width: 400 }} key={product.id}>
+    <Card sx={{ width: 400 }}>
       <CardMedia
         component="img"
         alt={product.name}
