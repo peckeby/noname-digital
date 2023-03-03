@@ -5,7 +5,7 @@
   },
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goitacademy.github.io/noname-digital/",
+  "homepage": "https://noname-digital-2f2q.vercel.app/",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
