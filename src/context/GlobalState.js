@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {
   db,
   auth,
-  getProducts,
+  // getProducts,
   updateProducts,
   createUser,
   signInUser,
   signOutUser,
+  getProducts,
 } from '../firebase/index';
 import ShopContext from './ShopContext';
 

@@ -5,16 +5,18 @@ export default function CategoriesList() {
   return (
     <ul className={css.imageList}>
       {itemData.map(item => (
-        <Link className={css.linkImage} to={item.title.toLowerCase()}>
-          <img
-            className={css.imgCategory}
-            src={`${item.img}?w=800&h=300&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=800&h=300&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <span className={css.imageText}>{item.title}</span>
-        </Link>
+        <div className={css.imgBox}>
+          <Link className={css.linkImage} to={item.title.toLowerCase()}>
+            <img
+              className={css.imgCategory}
+              src={`${item.img}?w=800&h=300&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=800&h=300&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.title}
+              loading="lazy"
+            />
+            <span className={css.imageText}>{item.title}</span>
+          </Link>
+        </div>
       ))}
     </ul>
   );

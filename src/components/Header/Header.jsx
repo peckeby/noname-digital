@@ -10,14 +10,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import css from './Header.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SIGN_OUT } from 'components/routes/routes';
-import GlobalState from 'context/GlobalState';
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const [userStatus, setUserStatus] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);

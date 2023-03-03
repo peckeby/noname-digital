@@ -1,5 +1,5 @@
-import React from "react";
+import { createContext } from 'react';
 
 /* Context */
-const ShopContext = React.createContext({});
+const ShopContext = createContext({});
 export default ShopContext;

@@ -2,9 +2,9 @@
 import { firebaseConfig } from './firebaseConfig';
 // import { getAuth } from 'firebase/auth';
 // import { getFirestore } from 'firebase/firestore';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import 'firebase/auth';
+import 'firebase/firestore';
+import firebase from 'firebase';
 
 /* Initialize Firebase */
 const Firebase = firebase.initializeApp(firebaseConfig);
@@ -29,7 +29,9 @@ export const createProduct = (db, item) => {
   return db.collection('products').doc(item.id).set({
     name: item.name,
     price: item.price,
-    stock: item.stock,
+    category: item.category,
+    image: item.image,
+    description: item.description,
   });
 };
 
@@ -62,7 +64,9 @@ export const getProducts = db => {
             id: doc.id,
             name: doc.data().name,
             price: doc.data().price,
-            stock: doc.data().stock,
+            image: doc.data().image,
+            category: doc.data().category,
+            description: doc.data().description,
           };
 
           products.push(prod);
