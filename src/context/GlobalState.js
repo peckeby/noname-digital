@@ -19,12 +19,6 @@ class GlobalState extends Component {
 
   componentDidMount() {
     try {
-      /* Initial load of products to Firebase using Config/Data */
-      // createProducts(db, Products)
-      //   .then(() => console.log('Successful initial load of products'))
-      //   .catch(error => console.error(error));
-
-      /* Get Products from Firebase */
       getProducts(db)
         .then(retrievedProducts =>
           this.setState({ products: retrievedProducts })

@@ -1,11 +1,7 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 import CategoriesList from 'components/CategoriesList/CategoriesList';
 
 export const Homepage = () => {
-  // const homepageImg = {
-  //   img: 'https://images.unsplash.com/photo-1593418631527-ef599fba72df',
-  //   title: 'chanel bags',
-  // };
   return (
     <>
       <Box

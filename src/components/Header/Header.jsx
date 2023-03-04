@@ -1,17 +1,23 @@
-import { Link } from 'react-router-dom';
 import css from './Header.module.scss';
 import { useState } from 'react';
-import { SIGN_OUT } from 'components/routes/routes';
-import { AccountCircle } from '@material-ui/icons';
 import {
-  AppBar,
-  Box,
-  IconButton,
-  Menu,
-  MenuItem,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+  ELECTRONICS,
+  JEWELERY,
+  MEN,
+  SIGN_OUT,
+  WOMAN,
+} from 'components/routes/routes';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -105,6 +111,8 @@ export default function Header() {
             sx={{ mr: 2 }}
             onClick={handleProfileMenuOpen}
           ></IconButton>
+          <MenuIcon />
+
           <Link to={'/'} className={css.homeLink}>
             <Typography
               variant="h6"
@@ -134,16 +142,16 @@ export default function Header() {
             }}
             onClick={preventDefault}
           >
-            <Link to={'electronics'} className={css.linkHeader}>
+            <Link to={ELECTRONICS} className={css.linkHeader}>
               electronics
             </Link>
-            <Link to={'jewelery'} className={css.linkHeader}>
+            <Link to={JEWELERY} className={css.linkHeader}>
               jewelery
             </Link>
-            <Link to={'men'} className={css.linkHeader}>
+            <Link to={MEN} className={css.linkHeader}>
               for him
             </Link>
-            <Link to={'woman'} className={css.linkHeader}>
+            <Link to={WOMAN} className={css.linkHeader}>
               for her
             </Link>
           </Box>
@@ -172,6 +180,7 @@ export default function Header() {
               onClick={handleMobileMenuOpen}
               color="black"
             ></IconButton>
+            <MoreIcon />
           </Box>
         </Toolbar>
       </AppBar>

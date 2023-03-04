@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import { useContext, useState } from 'react';
 import ShopContext from 'context/ShopContext';
-import { Button } from '@material-ui/core';
 
 export const Register = () => {
   const [email, setEmail] = useState();
