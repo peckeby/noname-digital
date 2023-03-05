@@ -8,7 +8,7 @@ export const Cart = () => {
 
   useEffect(() => {
     cart.map(item => setTotal(prev => prev + item.totalValue));
-  }, []);
+  }, [cart]);
 
   return (
     <>
@@ -57,7 +57,6 @@ export const Cart = () => {
         <Typography
           variant="h4"
           sx={{
-            textAlign: 'end',
             alignSelf: 'center',
             textAlign: 'center',
             textTransform: 'uppercase',

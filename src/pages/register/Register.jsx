@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import ShopContext from 'context/ShopContext';
-import { LOG_IN, SIGN_UP } from 'components/routes/routes';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
