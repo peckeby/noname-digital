@@ -1,7 +1,4 @@
-// import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebaseConfig';
-// import { getAuth } from 'firebase/auth';
-// import { getFirestore } from 'firebase/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import firebase from 'firebase/compat/app';
@@ -17,7 +14,7 @@ export const auth = Firebase.auth();
 /* Create products */
 export const createProducts = (db, products) => {
   //Create promises array
-  let listPromises = products.map((prod, index) => {
+  let listPromises = products.map((prod, _) => {
     return createProduct(db, prod);
   });
 
@@ -32,13 +29,14 @@ export const createProduct = (db, item) => {
     category: item.category,
     image: item.image,
     description: item.description,
+    stock: item.stock,
   });
 };
 
 /* Update products */
 export const updateProducts = (db, products) => {
   //Create promises array
-  let listPromises = products.map((prod, index) => {
+  let listPromises = products.map((prod, _) => {
     return updateProduct(db, prod);
   });
 
@@ -67,6 +65,7 @@ export const getProducts = db => {
             image: doc.data().image,
             category: doc.data().category,
             description: doc.data().description,
+            stock: doc.data().stock,
           };
 
           products.push(prod);

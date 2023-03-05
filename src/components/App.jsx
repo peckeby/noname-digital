@@ -6,6 +6,7 @@ import {
   SIGN_UP,
   WOMAN,
   JEWELERY,
+  CART,
 } from 'components/routes/routes';
 import GlobalState from 'context/GlobalState';
 import Electronics from 'pages/products/Electronics/Electronics';
@@ -19,6 +20,7 @@ import { PrivateRoute, PrivatLogOut } from './routes/RestrictedRoutes';
 import ForHim from 'pages/products/ForHim/ForHim';
 import ForHer from 'pages/products/ForHer/ForHer';
 import Jewelery from 'pages/products/Jewelery/Jewelery';
+import { Cart } from 'pages/cart/Cart';
 
 export const App = () => {
   return (
@@ -28,7 +30,6 @@ export const App = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Homepage />} />
-
               <Route
                 path={LOG_IN}
                 element={<PrivateRoute redirectTo="/" component={<Login />} />}
@@ -43,6 +44,12 @@ export const App = () => {
               <Route path={MEN} element={<ForHim />} />
               <Route path={WOMAN} element={<ForHer />} />
               <Route path={JEWELERY} element={<Jewelery />} />
+              <Route
+                path={CART}
+                element={
+                  <PrivatLogOut redirectTo={LOG_IN} component={<Cart />} />
+                }
+              />
               <Route
                 path={SIGN_OUT}
                 element={

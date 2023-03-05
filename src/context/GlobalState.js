@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   db,
   auth,
-  // getProducts,
   updateProducts,
   createUser,
   signInUser,
@@ -26,58 +25,105 @@ class GlobalState extends Component {
         .catch(error => console.log(error));
 
       this.updateUserStatus();
+      if (localStorage.getItem('cart')) {
+        this.setState({ cart: JSON.parse(localStorage.getItem('cart')) });
+      }
     } catch (error) {}
   }
 
   addProductToCart = product => {
-    setTimeout(() => {
-      let newCart = [];
-      let updatedProducts = [];
+    let newCart = [];
+    let updatedProducts = [];
 
-      /* Check Stock */
-      let indexProd = this.state.products.findIndex(prod => {
-        return prod.id === product.id;
+    /* Check Stock */
+    const indexProd = this.state.products.findIndex(prod => {
+      return prod.id === product.id;
+    });
+
+    if (this.state.products[indexProd].stock > 0) {
+      const indexCart = this.state.cart.findIndex(item => {
+        return item.id === product.id;
       });
+      console.log(indexCart);
 
-      if (this.state.products[indexProd].stock > 0) {
-        let indexCart = this.state.cart.findIndex(item => {
-          return item.id === product.id;
+      if (indexCart === -1 && this.state.cart.length !== 0) {
+        const cartNew = this.state.cart.concat([
+          {
+            id: product.id,
+            name: product.name,
+            quantity: 1,
+            totalValue: product.price,
+            image: product.image,
+          },
+        ]);
+
+        this.setState({
+          cart: cartNew,
         });
 
-        /* Add product to cart */
-        if (indexCart === -1) {
-          /*New item */
-          this.setState({
-            cart: this.state.cart.concat([
+        localStorage.setItem(
+          'cart',
+          JSON.stringify(
+            this.state.cart.concat([
               {
                 id: product.id,
                 name: product.name,
                 quantity: 1,
                 totalValue: product.price,
+                image: product.image,
               },
-            ]),
-          });
-        } else {
-          /* Existing item */
-          newCart = this.state.cart;
+            ])
+          )
+        );
+      } else if (indexCart === -1 && this.state.cart.length === 0) {
+        const cartNew = this.state.cart.concat([
+          {
+            id: product.id,
+            name: product.name,
+            quantity: 1,
+            totalValue: product.price,
+            image: product.image,
+          },
+        ]);
 
-          newCart[indexCart].quantity = newCart[indexCart].quantity + 1;
-          newCart[indexCart].totalValue =
-            newCart[indexCart].totalValue + product.price;
+        this.setState({
+          cart: cartNew,
+        });
 
-          this.setState({
-            cart: newCart,
-          });
-        }
+        localStorage.setItem(
+          'cart',
+          JSON.stringify([
+            {
+              id: product.id,
+              name: product.name,
+              quantity: 1,
+              totalValue: product.price,
+              image: product.image,
+            },
+          ])
+        );
+      } else {
+        newCart = this.state.cart;
 
-        /* Update Stock */
-        updatedProducts = this.state.products;
+        newCart[indexCart].quantity = newCart[indexCart].quantity + 1;
+        newCart[indexCart].totalValue =
+          newCart[indexCart].totalValue + product.price;
 
-        updatedProducts[indexProd].stock--;
+        this.setState({
+          cart: newCart,
+        });
 
-        this.setState({ products: updatedProducts });
+        localStorage.setItem('cart', JSON.stringify(this.state.cart));
       }
-    }, 100);
+
+      /* Update Stock */
+
+      updatedProducts = this.state.products;
+
+      updatedProducts[indexProd].stock--;
+
+      this.setState({ products: updatedProducts });
+    }
   };
 
   deleteProductFromCart = (id, quantity) => {
@@ -137,22 +183,24 @@ class GlobalState extends Component {
 
   render() {
     return (
-      <ShopContext.Provider
-        value={{
-          products: this.state.products,
-          cart: this.state.cart,
-          user: this.state.user,
-          addProductToCart: this.addProductToCart,
-          deleteProductFromCart: this.deleteProductFromCart,
-          buyCart: this.buyCart,
-          register: this.register,
-          logIn: this.logIn,
-          logOut: this.logOut,
-          updateUserStatus: this.updateUserStatus,
-        }}
-      >
-        {this.props.children}
-      </ShopContext.Provider>
+      <>
+        <ShopContext.Provider
+          value={{
+            products: this.state.products,
+            cart: this.state.cart,
+            user: this.state.user,
+            addProductToCart: this.addProductToCart,
+            deleteProductFromCart: this.deleteProductFromCart,
+            buyCart: this.buyCart,
+            register: this.register,
+            logIn: this.logIn,
+            logOut: this.logOut,
+            updateUserStatus: this.updateUserStatus,
+          }}
+        >
+          {this.props.children}
+        </ShopContext.Provider>
+      </>
     );
   }
 }
