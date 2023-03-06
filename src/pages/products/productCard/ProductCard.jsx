@@ -9,7 +9,7 @@ export default function ProductCard() {
   return (
     <ShopContext.Consumer>
       {context => (
-        <Box>
+        <Box sx={{ display: 'flex', gap: '9rem' }}>
           <img
             src={
               context.products.filter(product => product.id === idx)[0].image
@@ -17,28 +17,31 @@ export default function ProductCard() {
             height={300}
             alt={context.products.filter(product => product.id === idx)[0].name}
           />
-          <Typography variant="h4">
-            {context.products.filter(product => product.id === idx)[0].name}
-          </Typography>
-          <Typography variant="body">
-            {
-              context.products.filter(product => product.id === idx)[0]
-                .description
-            }
-          </Typography>
-          <Typography variant="h5">
-            Price:{' '}
-            {context.products.filter(product => product.id === idx)[0].price}$
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={context.addProductToCart.bind(
-              this,
-              context.products.filter(product => product.id === idx)[0]
-            )}
-          >
-            Add to cart
-          </Button>
+          <Box sx={{ display: 'block' }}>
+            <Typography variant="h4" marginBottom="2rem">
+              {context.products.filter(product => product.id === idx)[0].name}
+            </Typography>
+            <Typography variant="body" component="p" marginBottom="2rem">
+              {
+                context.products.filter(product => product.id === idx)[0]
+                  .description
+              }
+            </Typography>
+            <Typography variant="h5" marginBottom="2rem">
+              Price:{' '}
+              {context.products.filter(product => product.id === idx)[0].price}$
+            </Typography>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={context.addProductToCart.bind(
+                this,
+                context.products.filter(product => product.id === idx)[0]
+              )}
+            >
+              Add to cart
+            </Button>
+          </Box>
         </Box>
       )}
     </ShopContext.Consumer>

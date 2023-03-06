@@ -22,6 +22,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from '@mui/material';
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -162,10 +163,10 @@ export default function Header() {
             </Link>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {user && (
               <Link to={SIGN_OUT}>
-                <button type="button">Logout</button>
+                <Button>Logout</Button>
               </Link>
             )}
             <IconButton

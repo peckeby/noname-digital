@@ -8,14 +8,18 @@ export const Cart = () => {
 
   useEffect(() => {
     cart.map(item => setTotal(prev => prev + item.totalValue));
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <>
-      <Typography variant="h3" sx={{ textTransform: 'uppercase' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4rem' }}>
+      <Typography
+        variant="h3"
+        sx={{ textTransform: 'uppercase', alignSelf: 'center' }}
+      >
         My Cart
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'row', gap: '7rem' }}>
+      <Box>
         <List>
           {cart ? (
             cart.map(item => (
@@ -33,6 +37,7 @@ export const Cart = () => {
                       src={item.image}
                       alt={item.name}
                       height={200}
+                      width={300}
                       className={css.image}
                     />
                   </div>
@@ -65,6 +70,6 @@ export const Cart = () => {
           Total: {total}$
         </Typography>
       </Box>
-    </>
+    </Box>
   );
 };
