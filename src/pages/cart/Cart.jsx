@@ -8,7 +8,7 @@ export const Cart = () => {
 
   useEffect(() => {
     cart.map(item => setTotal(prev => prev + item.totalValue));
-  }, [cart]);
+  }, []);
 
   return (
     <>

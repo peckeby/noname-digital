@@ -7,6 +7,7 @@ import {
   SIGN_OUT,
   WOMAN,
   CART,
+  PROFILE,
 } from 'components/routes/routes';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -174,6 +175,7 @@ export default function Header() {
               aria-controls={menuId}
               aria-haspopup="true"
               color="black"
+              onClick={() => navigate(PROFILE)}
             >
               <AccountCircle />
             </IconButton>

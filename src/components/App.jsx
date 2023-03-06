@@ -7,6 +7,7 @@ import {
   WOMAN,
   JEWELERY,
   CART,
+  PROFILE,
 } from 'components/routes/routes';
 import GlobalState from 'context/GlobalState';
 import Electronics from 'pages/products/Electronics/Electronics';
@@ -21,6 +22,8 @@ import ForHim from 'pages/products/ForHim/ForHim';
 import ForHer from 'pages/products/ForHer/ForHer';
 import Jewelery from 'pages/products/Jewelery/Jewelery';
 import { Cart } from 'pages/cart/Cart';
+import Account from 'pages/account/Account';
+import ProductCard from 'pages/products/productCard/ProductCard';
 
 export const App = () => {
   return (
@@ -41,9 +44,21 @@ export const App = () => {
                 }
               />
               <Route path={ELECTRONICS} element={<Electronics />} />
+              <Route path="/electronics/:idx" element={<ProductCard />} />
+
               <Route path={MEN} element={<ForHim />} />
+              <Route path="/men/:idx" element={<ProductCard />} />
+
               <Route path={WOMAN} element={<ForHer />} />
+              <Route path="/woman/:idx" element={<ProductCard />} />
               <Route path={JEWELERY} element={<Jewelery />} />
+              <Route path="/jewelery/:idx" element={<ProductCard />} />
+              <Route
+                path={PROFILE}
+                element={
+                  <PrivatLogOut redirectTo={LOG_IN} component={<Account />} />
+                }
+              />
               <Route
                 path={CART}
                 element={
