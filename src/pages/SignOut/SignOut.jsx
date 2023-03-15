@@ -1,14 +1,16 @@
+import { Button } from '@mui/material';
 import { LOG_IN } from 'components/routes/routes';
 import ShopContext from 'context/ShopContext';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import s from './SingOut.module.scss';
 
 export const SignOut = props => {
   const context = useContext(ShopContext);
   const navigate = useNavigate();
 
   const handleButton = e => {
-    if (e.target.id === 'no') props.history.push('/');
+    if (e.target.id === 'no') navigate('/');
     else if (e.target.id === 'yes') {
       context
         .logOut()
@@ -25,18 +27,25 @@ export const SignOut = props => {
   };
 
   return (
-    <div>
-      <div>
-        <p>Logout?</p>
-      </div>
-
-      <div>
-        <button type="button" id="no" onClick={handleButton}>
+    <div className={s.logOutContainer}>
+      <p className={s.logOutDisclamer}>Sing out?</p>
+      <div className={s.buttonsLogOut}>
+        <Button
+          variant="contained"
+          type="button"
+          id="no"
+          onClick={handleButton}
+        >
           No
-        </button>
-        <button type="button" id="yes" onClick={handleButton}>
+        </Button>
+        <Button
+          variant="contained"
+          type="button"
+          id="yes"
+          onClick={handleButton}
+        >
           Yes
-        </button>
+        </Button>
       </div>
     </div>
   );

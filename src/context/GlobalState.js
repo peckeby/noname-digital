@@ -35,7 +35,6 @@ class GlobalState extends Component {
     let newCart = [];
     let updatedProducts = [];
 
-    /* Check Stock */
     const indexProd = this.state.products.findIndex(prod => {
       return prod.id === product.id;
     });
@@ -116,8 +115,6 @@ class GlobalState extends Component {
         localStorage.setItem('cart', JSON.stringify(this.state.cart));
       }
 
-      /* Update Stock */
-
       updatedProducts = this.state.products;
 
       updatedProducts[indexProd].stock--;
@@ -126,24 +123,28 @@ class GlobalState extends Component {
     }
   };
 
-  deleteProductFromCart = (id, quantity) => {
-    setTimeout(() => {
-      let newCart = this.state.cart;
+  deleteProductFromCart = (id, quantity, idx) => {
+    const newCart = this.state.cart;
 
-      /* Delete item */
+    if (quantity === 1 && JSON.parse(localStorage.getItem('cart')).length > 1) {
       this.setState({ cart: newCart.filter(item => item.id !== id) });
+      localStorage.setItem('cart', JSON.stringify(this.state.cart));
+    } else if (
+      quantity === 1 &&
+      JSON.parse(localStorage.getItem('cart')).length === 1
+    ) {
+      this.setState({ cart: [] });
+      localStorage.removeItem('cart');
+    } else {
+      console.log(idx);
+      newCart[idx].quantity = quantity - 1;
+      this.setState({ cart: newCart });
+      localStorage.setItem('cart', JSON.stringify(this.state.cart));
+    }
+    const updatedProducts = this.state.products;
+    updatedProducts[id].stock = updatedProducts[id].stock + parseInt(quantity);
 
-      let indexProd = this.state.products.findIndex(prod => {
-        return prod.id === id;
-      });
-
-      let updatedProducts = this.state.products;
-
-      updatedProducts[indexProd].stock =
-        updatedProducts[indexProd].stock + parseInt(quantity);
-
-      this.setState({ products: updatedProducts });
-    }, 100);
+    this.setState({ products: updatedProducts });
   };
 
   buyCart = () => {

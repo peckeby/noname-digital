@@ -3,6 +3,7 @@ export const JEWELERY = '/jewelery';
 export const MEN = '/men';
 export const CHECKOUT = '/checkout';
 export const WOMAN = '/woman';
+export const DELIVERY = '/delivery';
 export const CART = '/cart';
 export const PROFILE = '/profile';
 export const SIGN_UP = '/register';

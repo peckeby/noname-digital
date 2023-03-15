@@ -8,6 +8,7 @@ import {
   WOMAN,
   CART,
   PROFILE,
+  DELIVERY,
 } from 'components/routes/routes';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -164,6 +165,9 @@ export default function Header() {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Link to={DELIVERY}>
+              <Button>DELIVERY</Button>
+            </Link>
             {user && (
               <Link to={SIGN_OUT}>
                 <Button>Logout</Button>

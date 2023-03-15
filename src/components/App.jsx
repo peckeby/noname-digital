@@ -8,6 +8,7 @@ import {
   JEWELERY,
   CART,
   PROFILE,
+  DELIVERY,
 } from 'components/routes/routes';
 import GlobalState from 'context/GlobalState';
 import Electronics from 'pages/products/Electronics/Electronics';
@@ -24,6 +25,7 @@ import Jewelery from 'pages/products/Jewelery/Jewelery';
 import { Cart } from 'pages/cart/Cart';
 import Account from 'pages/account/Account';
 import ProductCard from 'pages/products/productCard/ProductCard';
+import Delivery from './Delivery/Delivery';
 
 export const App = () => {
   return (
@@ -53,6 +55,7 @@ export const App = () => {
               <Route path="/woman/:idx" element={<ProductCard />} />
               <Route path={JEWELERY} element={<Jewelery />} />
               <Route path="/jewelery/:idx" element={<ProductCard />} />
+              <Route path={DELIVERY} element={<Delivery />} />
               <Route
                 path={PROFILE}
                 element={

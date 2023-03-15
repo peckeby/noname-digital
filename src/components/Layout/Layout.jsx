@@ -28,6 +28,7 @@ function Layout() {
             display: 'flex',
             gap: 10,
             position: 'relative',
+            justifyContent: 'center',
             '@media (min-width: 1200px)': {
               maxWidth: '100vw',
             },
