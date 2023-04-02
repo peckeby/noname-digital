@@ -16,9 +16,11 @@ export const Cart = () => {
   const context = useContext(ShopContext);
 
   useEffect(() => {
-    console.log(context);
-    context.cart.forEach(item =>
-      setTotal(prev => prev + item.quantity * context.products[item.id].price)
+    setTotal(
+      context.cart.reduce(
+        (acc, item) => acc + item.quantity * item.totalValue,
+        0
+      )
     ); // eslint-disable-next-line
   }, [context.cart]);
 

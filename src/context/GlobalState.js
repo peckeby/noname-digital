@@ -145,6 +145,7 @@ class GlobalState extends Component {
     updatedProducts[id].stock = updatedProducts[id].stock + parseInt(quantity);
 
     this.setState({ products: updatedProducts });
+    window.location.reload();
   };
 
   buyCart = () => {
