@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /products/{itemId} {
+      allow read: if true;
+      allow create: if false;
+      allow update: if true;
+      allow delete: if false;
+    }
+  }
+}

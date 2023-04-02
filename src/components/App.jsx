@@ -24,8 +24,8 @@ import ForHer from 'pages/products/ForHer/ForHer';
 import Jewelery from 'pages/products/Jewelery/Jewelery';
 import { Cart } from 'pages/cart/Cart';
 import Account from 'pages/account/Account';
-import ProductCard from 'pages/products/productCard/ProductCard';
 import Delivery from './Delivery/Delivery';
+import ProductCard from 'pages/products/ProductCard/ProductCard';
 
 export const App = () => {
   return (
