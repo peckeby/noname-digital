@@ -25,7 +25,7 @@ import Jewelery from 'pages/products/Jewelery/Jewelery';
 import { Cart } from 'pages/cart/Cart';
 import Account from 'pages/account/Account';
 import Delivery from './Delivery/Delivery';
-import ProductCard from 'pages/products/ProductCard/ProductCard';
+import ProductCard from 'pages/products/productCard/ProductCard';
 
 export const App = () => {
   return (
