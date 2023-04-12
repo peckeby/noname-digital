@@ -23,56 +23,26 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Button } from '@mui/material';
+import { Badge, Button } from '@mui/material';
+import { DeliveryDining } from '@mui/icons-material';
 
 export default function Header() {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const cartParsed = JSON.parse(localStorage.getItem('cart'));
+
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const navigate = useNavigate();
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const preventDefault = event => event.preventDefault();
-
-  const handleProfileMenuOpen = event => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
   const handleMobileMenuOpen = event => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>About us</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Delivery & Return</MenuItem>
-    </Menu>
-  );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -91,18 +61,51 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      <Link to={DELIVERY}>
+        <MenuItem onClick={handleMobileMenuClose}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            color="black"
+          >
+            <DeliveryDining />
+          </IconButton>
+          <Typography sx={{ color: 'black' }}>Delivery</Typography>
+        </MenuItem>
+      </Link>
+      <Link to={PROFILE}>
+        <MenuItem onClick={handleMobileMenuClose}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            color="black"
+          >
+            <AccountCircle />
+          </IconButton>
+          <Typography sx={{ color: 'black' }}>Profile</Typography>
+        </MenuItem>
+      </Link>
+      <Link to={CART}>
+        <MenuItem onClick={handleMobileMenuClose}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            color="black"
+          >
+            {cartParsed ? (
+              <Badge badgeContent={cartParsed.length} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            ) : (
+              <ShoppingCartIcon />
+            )}
+          </IconButton>
+          <Typography sx={{ color: 'black' }}>Cart</Typography>
+        </MenuItem>
+      </Link>
     </Menu>
   );
 
@@ -118,7 +121,6 @@ export default function Header() {
             color="black"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={handleProfileMenuOpen}
           ></IconButton>
           <MenuIcon />
           <Link to={'/'} className={css.homeLink}>
@@ -164,7 +166,9 @@ export default function Header() {
             </Link>
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box
+            sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}
+          >
             <Link to={DELIVERY}>
               <Button>DELIVERY</Button>
             </Link>
@@ -177,7 +181,6 @@ export default function Header() {
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
               aria-haspopup="true"
               color="black"
               onClick={() => navigate(PROFILE)}
@@ -188,14 +191,19 @@ export default function Header() {
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
               aria-haspopup="true"
               color="black"
               onClick={() => {
                 navigate(CART);
               }}
             >
-              <ShoppingCartIcon />
+              {cartParsed ? (
+                <Badge badgeContent={cartParsed.length} color="error">
+                  <ShoppingCartIcon />
+                </Badge>
+              ) : (
+                <ShoppingCartIcon />
+              )}
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -205,14 +213,13 @@ export default function Header() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="black"
+              sx={{ color: 'black' }}
             ></IconButton>
             <MoreIcon />
           </Box>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </>
   );
 }

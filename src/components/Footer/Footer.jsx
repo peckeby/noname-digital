@@ -28,7 +28,7 @@ export default function Footer() {
           alignItems: 'center',
           flexDirection: 'row',
           justifyContent: 'center',
-          gap: '32rem',
+          gap: '30%',
         }}
       >
         <section className={s.footerContactsSection}>
