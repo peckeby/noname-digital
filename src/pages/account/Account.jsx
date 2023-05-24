@@ -12,22 +12,18 @@ export default function Account() {
 
   return (
     <section className={s.sectionCabinet}>
-      <Typography variant="h2" sx={{ color: 'blue' }}>
-        Personal cabinet
-      </Typography>
+      <Typography variant="h2">Personal cabinet</Typography>
       <Box
         component="div"
         sx={{
-          p: 2,
-          border: '1px dashed grey',
-          ml: 'auto',
-          mr: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-around',
         }}
       >
-        <Typography variant="h4">Your personal info</Typography>
         <Typography variant="h5">Email: {email}</Typography>
         <Link to={SIGN_OUT}>
-          <Button>SING OUT</Button>
+          <Button variant="contained">SING OUT</Button>
         </Link>
       </Box>
     </section>

@@ -34,7 +34,12 @@ export const Cart = () => {
           >
             My Cart
           </Typography>
-          <Box>
+          <Box
+            sx={{
+              alignSelf: 'center',
+              textAlign: 'center',
+            }}
+          >
             {context.cart.length > 0 ? (
               <>
                 <List>
